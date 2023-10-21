@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Box, Button, Typography } from '@mui/material';
-import styles from './404.module.css';
+import styles from '../styles/404.module.css';
 
 const NotFound = () => {
 	return (

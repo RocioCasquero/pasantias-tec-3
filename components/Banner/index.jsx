@@ -9,7 +9,7 @@ const Banner = () => {
 	return (
 		<Box className={styles.banner_wrapper}>
 			<Box className={styles.banner_container}>
-				<Image src={EscuelaBanner} alt="school-banner" />
+				<Image src={EscuelaBanner} priority={true} alt="school-banner" />
 
 				<Fade in={true}>
 					<Box className={styles.title_container}>

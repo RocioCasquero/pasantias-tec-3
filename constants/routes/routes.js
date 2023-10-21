@@ -1,3 +1,5 @@
+import { CONTACTO } from '../home/hashes';
+
 export const PATH_ROUTES = {
 	HOME: '/',
 	HISTORIA: '/historia',
@@ -12,5 +14,5 @@ export const PATH_ROUTES = {
 };
 
 export const HASH_ROUTES = {
-	CONTACTOS: '/#contactos',
+	CONTACTO: `/#${CONTACTO}`,
 };

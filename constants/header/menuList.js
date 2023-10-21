@@ -19,7 +19,7 @@ export const MENU_CHOICES = [
 		subItems: specialtyChoices,
 	},
 	{
-		name: 'Contactos',
-		link: HASH_ROUTES.CONTACTOS,
+		name: 'Contacto',
+		link: HASH_ROUTES.CONTACTO,
 	},
 ];
