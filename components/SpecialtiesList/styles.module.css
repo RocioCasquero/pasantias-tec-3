@@ -1,29 +1,30 @@
 .specialties_wrapper {
 	width: 110%;
+	height: 640px;
 	position: relative;
 	top: -120px;
 	left: -5%;
 	margin-bottom: -64px;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+
+	@media (max-width: 1064px) {
+		height: 1000px;
+	}
+	
+	@media (max-width: 710px) {
+		height: 1600px;
+	}
 }
 
 .specialties_container {
 	padding: 24px 0px;
+	max-width: 1330px;
 	width: max-content;
-	max-width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-}
-
-.card_divider {
-	width: 240px;
-	height: 0px;
-	margin: -120px;
-	transform: rotate(90deg);
 }
 
 .specialty_link {

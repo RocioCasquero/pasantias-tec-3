@@ -1,5 +1,37 @@
-.mapa {
-	width: 50px;
-	height: 50px;
-	object-fit: cover;
+.wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 64px;
+
+	@media (max-width: 900px) {
+		gap: 32px;
+	}
+}
+
+.contenedor {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 64px;
+
+	@media (max-width: 900px) {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.formulario {
+	width: 50%;
+	max-width: 400px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	@media (max-width: 900px) {
+		width: 80%;
+		max-width: none;
+	}
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Grow, Typography } from '@mui/material';
 import styles from './styles.module.css';
 
 const SpecialtiesCards = ({
@@ -42,15 +42,21 @@ const SpecialtiesCards = ({
 			</Typography>
 
 			{shouldShowLink && (
-				<Box className={styles.specialty_link_container}>
-					<Typography
-						variant="button"
-						component="p"
-						className={styles.specialty_link}
-					>
-						Saber más
-					</Typography>
-				</Box>
+				<Grow
+					in={shouldShowLink}
+					style={{ transformOrigin: '0 1 0' }}
+					{...(shouldShowLink ? { timeout: 500 } : {})}
+				>
+					<Box className={styles.specialty_link_container}>
+						<Typography
+							variant="button"
+							component="p"
+							className={styles.specialty_link}
+						>
+							Saber más
+						</Typography>
+					</Box>
+				</Grow>
 			)}
 		</div>
 	);

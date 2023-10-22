@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './../../components/Header';
-import globalStyles from './../../assets/styles/global.module.css';
+import Header from '../../components/Header';
+import globalStyles from '../../styles/global.module.css';
 import classNames from 'classnames';
 import styles from './styles.module.css';
 
