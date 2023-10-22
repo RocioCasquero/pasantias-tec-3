@@ -51,7 +51,7 @@
 	height: 360px;
 	object-fit: cover;
 	border: 1px solid lightgrey;
-	border-radius: 8;
+	border-radius: 6px;
 	transition: all ease-out 0.5s;
 
 	@media (max-width: 1064px) {
