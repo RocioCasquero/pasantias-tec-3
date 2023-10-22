@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Button, TextField, Typography } from '@mui/material';
-import { EMAIL_COLEGIO } from '../../constants/home/contactos';
-import { capitalizarTexto } from '../../utils/text';
+import Link from 'next/link';
+import { Button, TextField, Tooltip, Typography } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { EMAIL_COLEGIO, LISTA_CONTACTOS } from '../../constants/home/contactos';
+import { capitalizarTexto, copiarEnPortapapeles } from '../../utils/text';
 import mapaColegio from '../../assets/img/mapa-colegio.jpeg';
 import styles from './styles.module.css';
 
@@ -20,7 +23,7 @@ const Contacto = ({ hashId }) => {
 
 	return (
 		<div id={hashId} className={styles.wrapper}>
-			<Typography variant="h4" component="h2" gutterBottom>
+			<Typography variant="h4" component="h2">
 				Contacto
 			</Typography>
 
@@ -46,22 +49,57 @@ const Contacto = ({ hashId }) => {
 						value={message}
 						onChange={e => setMessage(e.target.value)}
 					/>
-					<Button variant="contained" color="primary" onClick={handleSendEmail}>
+					<Button
+						variant="contained"
+						color="primary"
+						className={styles.boton_enviar_email}
+						onClick={handleSendEmail}
+					>
 						Enviar Correo
 					</Button>
 				</div>
 
 				<Image
 					src={mapaColegio}
-					width={520}
-					height={360}
 					alt="mapa-colegio"
-					style={{
-						objectFit: 'cover',
-						border: '1px solid lightgrey',
-						borderRadius: 8,
-					}}
+					className={styles.mapa_colegio}
 				/>
+			</div>
+
+			<div className={styles.lista_contactos}>
+				{LISTA_CONTACTOS.map(({ label, icon: Icon, link }) => {
+					return (
+						<div className={styles.card_contacto} key={label}>
+							<Icon />
+
+							<Typography variant="body2" component="p">
+								{label}
+							</Typography>
+
+							<div className={styles.contacto_button}>
+								{link ? (
+									<Link
+										href={link}
+										target="_blank"
+										title="abrir página en nueva pestaña"
+									>
+										<OpenInNewIcon />
+									</Link>
+								) : (
+									<Tooltip
+										title="Copiar en el portapapeles"
+										placement="top"
+										arrow
+									>
+										<ContentCopyIcon
+											onClick={() => copiarEnPortapapeles(label)}
+										/>
+									</Tooltip>
+								)}
+							</div>
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);

@@ -35,3 +35,71 @@
 		max-width: none;
 	}
 }
+
+.boton_enviar_email {
+	width: max-content;
+	padding: 8px 24px;
+
+	@media (max-width: 900px) {
+		margin: 0 auto;
+		width: 60%;
+	}
+}
+
+.mapa_colegio {
+	width: 520px;
+	height: 360px;
+	object-fit: cover;
+	border: 1px solid lightgrey;
+	border-radius: 8;
+	transition: all ease-out 0.5s;
+
+	@media (max-width: 1064px) {
+		width: 400px;
+		height: 360px;
+	}
+
+	@media (max-width: 900px) {
+		width: 80%;
+		height: 360px;
+	}
+}
+
+.lista_contactos {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 16px;
+}
+
+.card_contacto {
+	min-width: 240px;
+	height: max-content;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.08);
+	padding: 8px 16px;
+	border-radius: 6px;
+	color: #57647c;
+	overflow: hidden;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+	max-width: 80%;
+	cursor: default;
+}
+
+.contacto_button {
+	height: 24px;
+	margin-left: 8px;
+}
+
+.contacto_button svg {
+	cursor: pointer;
+	width: 20px;
+	color: #57647c;
+}
+
+.contacto_button svg:hover {
+	color: #93c572;
+}

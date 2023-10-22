@@ -34,6 +34,10 @@
 	flex-direction: column;
 	gap: 16px;
 	transition: left 0.5s ease;
+
+	@media (max-width: 520px) {
+		left: 160px;
+	}
 }
 
 .banner_button {
