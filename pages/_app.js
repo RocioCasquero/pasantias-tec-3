@@ -1,19 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { SnackbarProvider, useSnackbar } from 'notistack';
+import { CacheProvider } from '@emotion/react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { CacheProvider } from '@emotion/react';
+import DefaultLayout from '../layouts/DefaultLayout';
 import theme from '../constants/styles/theme';
 import createEmotionCache from '../utils/createEmotionCache';
-import DefaultLayout from '../layouts/DefaultLayout';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-const MyApp = props => {
-	const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
+const MyApp = ({
+	Component,
+	emotionCache = clientSideEmotionCache,
+	pageProps,
+}) => {
 	return (
 		<CacheProvider value={emotionCache}>
 			<Head>
@@ -24,8 +27,14 @@ const MyApp = props => {
 				{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
 				<CssBaseline />
 				<DefaultLayout>
-					{/* Esto serian nuestras paginas envueltas por la plantilla */}
-					<Component {...pageProps} />
+					<SnackbarProvider
+						maxSnack={3}
+						autoHideDuration={3000}
+						anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+					>
+						{/* Esto serian nuestras paginas envueltas por la plantilla */}
+						<Component {...pageProps} />
+					</SnackbarProvider>
 				</DefaultLayout>
 			</ThemeProvider>
 		</CacheProvider>

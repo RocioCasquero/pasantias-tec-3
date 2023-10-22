@@ -5,13 +5,13 @@ export const capitalizarTexto = text => {
 		?.join(' ');
 };
 
-export const copiarEnPortapapeles = textToCopy => {
+export const copiarEnPortapapeles = (textToCopy, onSuccess, onError) => {
 	navigator.clipboard
 		.writeText(textToCopy)
 		.then(() => {
-			alert('Texto copiado al portapapeles');
+			onSuccess?.();
 		})
-		.catch(error => {
-			console.error('Error al copiar al portapapeles: ', error);
+		.catch(() => {
+			onError?.();
 		});
 };

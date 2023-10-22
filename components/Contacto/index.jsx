@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button, TextField, Tooltip, Typography } from '@mui/material';
+import { useSnackbar } from 'notistack';
+import { Button, Grow, TextField, Tooltip, Typography } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { EMAIL_COLEGIO, LISTA_CONTACTOS } from '../../constants/home/contactos';
@@ -10,15 +11,32 @@ import mapaColegio from '../../assets/img/mapa-colegio.jpeg';
 import styles from './styles.module.css';
 
 const Contacto = ({ hashId }) => {
+	const { enqueueSnackbar } = useSnackbar();
+
 	const [subject, setSubject] = useState('');
 	const [message, setMessage] = useState('');
 	const [nombre, setNombre] = useState('');
+	const [showContactAction, handleShowContactAction] = useState(-1);
 
 	const handleSendEmail = () => {
 		const body = `Hola, mi nombre es ${nombre} me comunico por el siguiente motivo: ${message}`;
 
 		const mailtoLink = `mailto:${EMAIL_COLEGIO}?subject=${subject}&body=${body}`;
 		window.location.href = mailtoLink;
+	};
+
+	const handleCopyToClipboard = async text => {
+		copiarEnPortapapeles(
+			text,
+			() =>
+				enqueueSnackbar('Texto copiado en el portapapeles', {
+					variant: 'success',
+				}),
+			() =>
+				enqueueSnackbar('Error al copiar texto en el portapapeles', {
+					variant: 'error',
+				})
+		);
 	};
 
 	return (
@@ -67,36 +85,47 @@ const Contacto = ({ hashId }) => {
 			</div>
 
 			<div className={styles.lista_contactos}>
-				{LISTA_CONTACTOS.map(({ label, icon: Icon, link }) => {
+				{LISTA_CONTACTOS.map(({ label, icon: Icon, link }, index) => {
 					return (
-						<div className={styles.card_contacto} key={label}>
+						<div
+							className={styles.card_contacto}
+							key={label}
+							onMouseEnter={() => handleShowContactAction(index)}
+							onMouseLeave={() => handleShowContactAction(null)}
+						>
 							<Icon />
 
 							<Typography variant="body2" component="p">
 								{label}
 							</Typography>
 
-							<div className={styles.contacto_button}>
-								{link ? (
-									<Link
-										href={link}
-										target="_blank"
-										title="abrir página en nueva pestaña"
-									>
-										<OpenInNewIcon />
-									</Link>
-								) : (
-									<Tooltip
-										title="Copiar en el portapapeles"
-										placement="top"
-										arrow
-									>
-										<ContentCopyIcon
-											onClick={() => copiarEnPortapapeles(label)}
-										/>
-									</Tooltip>
-								)}
-							</div>
+							<Grow
+								in={showContactAction === index}
+								style={{ transformOrigin: '1 0 0' }}
+								{...(showContactAction === index ? { timeout: 500 } : {})}
+							>
+								<div className={styles.contacto_button}>
+									{link ? (
+										<Link
+											href={link}
+											target="_blank"
+											title="abrir página en nueva pestaña"
+										>
+											<OpenInNewIcon />
+										</Link>
+									) : (
+										<Tooltip
+											title="Copiar en el portapapeles"
+											placement="top"
+											arrow
+										>
+											<ContentCopyIcon
+												onClick={() => handleCopyToClipboard(label)}
+											/>
+										</Tooltip>
+									)}
+								</div>
+							</Grow>
 						</div>
 					);
 				})}
