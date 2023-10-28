@@ -2,7 +2,8 @@ import * as React from 'react';
 import Banner from '../components/Banner';
 import SpecialtiesList from '../components/SpecialtiesList';
 import Contacto from '../components/Contacto';
-import { CONTACTO } from '../constants/home/hashes';
+import Equipo from '../components/Equipo';
+import { CONTACTO, EQUIPO } from '../constants/home/hashes';
 
 import styles from '../styles/index.module.css';
 
@@ -12,6 +13,7 @@ const Home = () => {
 			<Banner />
 			<SpecialtiesList />
 			<Contacto hashId={CONTACTO} />
+			<Equipo hashId={EQUIPO} />
 		</div>
 	);
 };

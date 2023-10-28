@@ -2,16 +2,16 @@
 	width: 110%;
 	height: 640px;
 	position: relative;
-	top: -120px;
+	top: -200px;
 	left: -5%;
-	margin-bottom: -64px;
+	margin-bottom: -224px;
 	display: flex;
 	justify-content: center;
 
 	@media (max-width: 1064px) {
 		height: 1000px;
 	}
-	
+
 	@media (max-width: 710px) {
 		height: 1600px;
 	}
