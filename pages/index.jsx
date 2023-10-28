@@ -3,6 +3,7 @@ import Banner from '../components/Banner';
 import SpecialtiesList from '../components/SpecialtiesList';
 import Contacto from '../components/Contacto';
 import { CONTACTO } from '../constants/home/hashes';
+
 import styles from '../styles/index.module.css';
 
 const Home = () => {
