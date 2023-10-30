@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../../components/Header';
-import globalStyles from '../../styles/global.module.css';
+import Footer from '../../components/Footer';
 import classNames from 'classnames';
+import globalStyles from '../../styles/global.module.css';
 import styles from './styles.module.css';
 
 const DefaultLayout = ({ children }) => {
@@ -15,6 +16,8 @@ const DefaultLayout = ({ children }) => {
 			<Header />
 
 			{children}
+
+			<Footer />
 		</div>
 	);
 };
