@@ -26,16 +26,16 @@ const MyApp = ({
 			<ThemeProvider theme={theme}>
 				{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
 				<CssBaseline />
-				<DefaultLayout>
-					<SnackbarProvider
-						maxSnack={3}
-						autoHideDuration={3000}
-						anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-					>
+				<SnackbarProvider
+					maxSnack={3}
+					autoHideDuration={3000}
+					anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+				>
+					<DefaultLayout>
 						{/* Esto serian nuestras paginas envueltas por la plantilla */}
 						<Component {...pageProps} />
-					</SnackbarProvider>
-				</DefaultLayout>
+					</DefaultLayout>
+				</SnackbarProvider>
 			</ThemeProvider>
 		</CacheProvider>
 	);

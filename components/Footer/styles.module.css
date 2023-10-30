@@ -1,0 +1,46 @@
+.wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #152d52;
+	padding: 24px 8vw;
+	color: white;
+	gap: 24px;
+}
+
+.wrapper a {
+	color: white;
+	text-decoration: none;
+}
+
+.wrapper a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.footer_data_wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 24px;
+}
+
+.footer_data_container {
+	display: flex;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+
+.footer_contactos {
+	display: flex;
+	gap: 8px;
+}
+
+.divider {
+	background-color: #ffffff;
+	width: 100%;
+	height: 0.5px;
+	opacity: 0.5;
+}
