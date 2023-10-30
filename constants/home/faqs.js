@@ -13,7 +13,7 @@ export const FAQ_LIST = [
 	{
 		pregunta: '¿Cuál es el horario de Oficina de Alumnos?',
 		respuesta:
-			'La oficina de alumnos esta disponible de 8 a 12 am y de 13:30 a 18 hs.',
+			'La oficina de alumnos esta disponible de 8:00hs a 12:00hs y de 13:30hs a 18:00hs.',
 	},
 	{
 		pregunta:
@@ -23,10 +23,10 @@ export const FAQ_LIST = [
 	{
 		pregunta: '¿Cuándo se realizan las inscripciones?',
 		respuesta:
-			'Las inscripciones se realizan a partir de septiembre y comunicarse con oficina técnica.',
+			'Las inscripciones se realizan a partir de septiembre y deberá comunicarse con oficina técnica.',
 	},
 	{
 		pregunta: '¿Cuándo se realizan las reuniones ordinarias?',
-		respuesta: 'Las reuniones ordinarias re realizan los Viernes a las 15:30hs',
+		respuesta: 'Las reuniones ordinarias re realizan los viernes a las 15:30hs',
 	},
 ];

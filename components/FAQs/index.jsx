@@ -20,24 +20,26 @@ const FAQs = () => {
 			<div className={styles.faq_container}>
 				{FAQ_LIST.map(({ pregunta, respuesta }, index) => {
 					return (
-						<Accordion className={styles.faq_accordion}>
-							<AccordionSummary
-								className={styles.faq_header}
-								expandIcon={<ExpandMoreIcon />}
-								aria-controls={`faq-${index}`}
-								id={`faq-${index}-header`}
-							>
-								<Typography variant="h6" component="p">
-									{pregunta}
-								</Typography>
-							</AccordionSummary>
+						<div>
+							<Accordion className={styles.faq_accordion}>
+								<AccordionSummary
+									className={styles.faq_header}
+									expandIcon={<ExpandMoreIcon />}
+									aria-controls={`faq-${index}`}
+									id={`faq-${index}-header`}
+								>
+									<Typography variant="h6" component="p">
+										{pregunta}
+									</Typography>
+								</AccordionSummary>
 
-							<AccordionDetails className={styles.faq_content}>
-								<Typography variant="body1" component="p">
-									{respuesta}
-								</Typography>
-							</AccordionDetails>
-						</Accordion>
+								<AccordionDetails className={styles.faq_content}>
+									<Typography variant="body1" component="p">
+										{respuesta}
+									</Typography>
+								</AccordionDetails>
+							</Accordion>
+						</div>
 					);
 				})}
 			</div>
