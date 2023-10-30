@@ -3,6 +3,7 @@ import Banner from '../components/Banner';
 import SpecialtiesList from '../components/SpecialtiesList';
 import Contacto from '../components/Contacto';
 import Equipo from '../components/Equipo';
+import FAQs from '../components/FAQs';
 import { CONTACTO, EQUIPO } from '../constants/home/hashes';
 
 import styles from '../styles/index.module.css';
@@ -14,6 +15,7 @@ const Home = () => {
 			<SpecialtiesList />
 			<Contacto hashId={CONTACTO} />
 			<Equipo hashId={EQUIPO} />
+			<FAQs />
 		</div>
 	);
 };
