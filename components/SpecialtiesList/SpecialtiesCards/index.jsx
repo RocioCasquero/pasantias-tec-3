@@ -1,5 +1,10 @@
-import { useState } from 'react';
-import { Box, Grow, Typography } from '@mui/material';
+// import { useState } from 'react';
+import {
+	Tooltip,
+	// Box, Grow,
+	Typography,
+} from '@mui/material';
+
 import styles from './styles.module.css';
 
 const SpecialtiesCards = ({
@@ -8,17 +13,24 @@ const SpecialtiesCards = ({
 	title,
 	description,
 }) => {
-	const [shouldShowLink, setShouldShowLink] = useState(false);
+	// const [shouldShowLink, setShouldShowLink] = useState(false);
 
-	const handleShouldShowLink = value => {
-		setShouldShowLink(value);
+	// const handleShouldShowLink = value => {
+	// 	setShouldShowLink(value);
+	// };
+
+	const truncateDescription = value => {
+		const threshold = 132;
+		return value?.length > threshold
+			? value.trim().slice(0, threshold - 3) + '...'
+			: value;
 	};
 
 	return (
 		<div
 			className={styles.specialty_container}
-			onMouseEnter={() => handleShouldShowLink(true)}
-			onMouseLeave={() => handleShouldShowLink(false)}
+			// onMouseEnter={() => handleShouldShowLink(true)}
+			// onMouseLeave={() => handleShouldShowLink(false)}
 		>
 			<SpecialtyIcon
 				className={styles.specialty_icon}
@@ -33,15 +45,17 @@ const SpecialtiesCards = ({
 				{title}
 			</Typography>
 
-			<Typography
-				variant="body1"
-				component="p"
-				className={styles.specialty_description}
-			>
-				{description}
-			</Typography>
+			<Tooltip title={description} placement="bottom" arrow>
+				<Typography
+					variant="body1"
+					component="p"
+					className={styles.specialty_description}
+				>
+					{truncateDescription(description)}
+				</Typography>
+			</Tooltip>
 
-			{shouldShowLink && (
+			{/* {shouldShowLink && (
 				<Grow
 					in={shouldShowLink}
 					style={{ transformOrigin: '0 1 0' }}
@@ -57,7 +71,7 @@ const SpecialtiesCards = ({
 						</Typography>
 					</Box>
 				</Grow>
-			)}
+			)} */}
 		</div>
 	);
 };

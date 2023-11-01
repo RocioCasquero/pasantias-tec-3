@@ -95,7 +95,10 @@ const Carrusel = ({ list }) => {
 				<div className={styles.carousel_list}>
 					{list?.map(({ nombre, rol, foto }) => {
 						return (
-							<div className={styles.card_container}>
+							<div
+								className={styles.card_container}
+								key={`carousel-card-${nombre}`}
+							>
 								<div className={styles.card_image_wrapper}>
 									<Image
 										src={foto}

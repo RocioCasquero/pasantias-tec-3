@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Box, Button, Fade, Typography } from '@mui/material';
+import { HASH_ROUTES } from '../../constants/routes/routes';
 import EscuelaBanner from './../../assets/img/escuela-banner.jpg';
 import styles from './styles.module.css';
 
@@ -31,7 +32,7 @@ const Banner = () => {
 							</Typography>
 						</Box>
 
-						<Link href="/inscripciones">
+						<Link href={HASH_ROUTES.CONTACTO}>
 							<Button
 								variant="contained"
 								size="large"

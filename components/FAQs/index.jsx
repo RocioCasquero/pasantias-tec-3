@@ -20,7 +20,7 @@ const FAQs = () => {
 			<div className={styles.faq_container}>
 				{FAQ_LIST.map(({ pregunta, respuesta }, index) => {
 					return (
-						<div>
+						<div key={`faq-${index}`}>
 							<Accordion className={styles.faq_accordion}>
 								<AccordionSummary
 									className={styles.faq_header}

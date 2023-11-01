@@ -51,7 +51,13 @@
 }
 
 .menu_item,
-.menu_item > button {
+.menu_item > button,
+.menu_item > button:disabled {
 	text-decoration: none;
 	color: white;
+}
+
+.menu_item > button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed !important;
 }

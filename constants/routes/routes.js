@@ -1,4 +1,4 @@
-import { CONTACTO } from '../home/hashes';
+import { CONTACTO, EQUIPO, ESPECIALIDADES } from '../home/hashes';
 
 export const PATH_ROUTES = {
 	HOME: '/',
@@ -15,4 +15,6 @@ export const PATH_ROUTES = {
 
 export const HASH_ROUTES = {
 	CONTACTO: `/#${CONTACTO}`,
+	EQUIPO: `/#${EQUIPO}`,
+	ESPECIALIDADES: `/#${ESPECIALIDADES}`,
 };

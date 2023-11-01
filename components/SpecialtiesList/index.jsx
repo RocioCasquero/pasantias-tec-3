@@ -1,13 +1,13 @@
 import React from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { Box } from '@mui/material';
 import SpecialtiesCards from './SpecialtiesCards';
 import { SPECIALTY_CARD_LIST } from '../../constants/home/specialtySection';
 import styles from './styles.module.css';
 
-const SpecialtiesList = () => {
+const SpecialtiesList = ({ hashId }) => {
 	return (
-		<Box className={styles.specialties_wrapper}>
+		<Box id={hashId} className={styles.specialties_wrapper}>
 			<Box className={styles.specialties_container}>
 				{SPECIALTY_CARD_LIST?.map(
 					(
@@ -15,19 +15,19 @@ const SpecialtiesList = () => {
 						index
 					) => {
 						return (
-							<Link
-								href={link}
-								className={styles.specialty_link}
+							// <Link
+							// 	href={link}
+							// 	className={styles.specialty_link}
+							// >
+							<SpecialtiesCards
 								key={`specialty_card_${index}`}
-							>
-								<SpecialtiesCards
-									SpecialtyIcon={SpecialtyIcon}
-									iconColor={iconColor}
-									title={title}
-									description={description}
-									link={link}
-								/>
-							</Link>
+								SpecialtyIcon={SpecialtyIcon}
+								iconColor={iconColor}
+								title={title}
+								description={description}
+								link={link}
+							/>
+							// </Link>
 						);
 					}
 				)}

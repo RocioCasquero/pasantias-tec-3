@@ -9,17 +9,21 @@ export const MENU_CHOICES = [
 	{
 		name: 'Inicio',
 		link: PATH_ROUTES.HOME,
-	},
-	{
-		name: 'Acerca del colegio',
-		link: PATH_ROUTES.HISTORIA,
+		subItems: null,
 	},
 	{
 		name: 'Especialidades',
-		subItems: specialtyChoices,
+		link: HASH_ROUTES.ESPECIALIDADES,
+		subItems: null,
 	},
 	{
 		name: 'Contacto',
 		link: HASH_ROUTES.CONTACTO,
+		subItems: null,
+	},
+	{
+		name: 'Equipo',
+		link: HASH_ROUTES.EQUIPO,
+		subItems: null,
 	},
 ];
