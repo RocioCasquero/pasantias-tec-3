@@ -7,6 +7,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import DefaultLayout from '../layouts/DefaultLayout';
 import theme from '../constants/styles/theme';
+import { CUSTOM_ROUTES } from '../constants/routes/routes';
+import { LAYOUT_TYPES } from '../constants/layouts';
 import createEmotionCache from '../utils/createEmotionCache';
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -16,7 +18,26 @@ const MyApp = ({
 	Component,
 	emotionCache = clientSideEmotionCache,
 	pageProps,
+	router,
 }) => {
+	const { pathname } = router;
+
+	const GetLayout = () => {
+		const customRoute = CUSTOM_ROUTES.find(route => route?.path === pathname);
+
+		switch (customRoute?.layout) {
+			case LAYOUT_TYPES.EMPTY:
+				return <Component {...pageProps} />;
+
+			default:
+				return (
+					<DefaultLayout>
+						<Component {...pageProps} />
+					</DefaultLayout>
+				);
+		}
+	};
+
 	return (
 		<CacheProvider value={emotionCache}>
 			<Head>
@@ -31,10 +52,7 @@ const MyApp = ({
 					autoHideDuration={3000}
 					anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 				>
-					<DefaultLayout>
-						{/* Esto serian nuestras paginas envueltas por la plantilla */}
-						<Component {...pageProps} />
-					</DefaultLayout>
+					<GetLayout />
 				</SnackbarProvider>
 			</ThemeProvider>
 		</CacheProvider>

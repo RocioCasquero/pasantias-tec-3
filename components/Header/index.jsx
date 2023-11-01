@@ -2,13 +2,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-	AppBar,
-	Box,
-	// Button,
-	Toolbar,
-	Tooltip,
-} from '@mui/material';
+import { AppBar, Box, Button, Toolbar, Tooltip } from '@mui/material';
 import Sidebar from '../Drawer';
 import HeaderMenuList from './HeaderMenuList';
 import { DISTANCE_TO_CHANGE } from '../../constants/header/headerRules';
@@ -69,9 +63,9 @@ const Header = () => {
 					<Box className={styles.menu_container}>
 						<HeaderMenuList />
 
-						{/* <Link href="/login" className={styles.menu_item}>
+						<Link href="/login" className={styles.menu_item}>
 							<Button>Login</Button>
-						</Link> */}
+						</Link>
 
 						<MenuIcon
 							className={styles.menu_button}

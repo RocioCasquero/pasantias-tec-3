@@ -1,4 +1,5 @@
 import { CONTACTO, EQUIPO, ESPECIALIDADES } from '../home/hashes';
+import { LAYOUT_TYPES } from '../layouts';
 
 export const PATH_ROUTES = {
 	HOME: '/',
@@ -11,6 +12,7 @@ export const PATH_ROUTES = {
 		ELECTRONICA: '/especialidades/electronica',
 		CONSTRUCCIONES: '/especialidades/construcciones',
 	},
+	LOGIN: '/login',
 };
 
 export const HASH_ROUTES = {
@@ -18,3 +20,7 @@ export const HASH_ROUTES = {
 	EQUIPO: `/#${EQUIPO}`,
 	ESPECIALIDADES: `/#${ESPECIALIDADES}`,
 };
+
+export const CUSTOM_ROUTES = [
+	{ path: PATH_ROUTES.LOGIN, layout: LAYOUT_TYPES.EMPTY },
+];
