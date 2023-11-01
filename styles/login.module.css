@@ -1,0 +1,99 @@
+.login_wrapper {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+}
+
+.login_banner {
+	width: 50%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.form_wrapper {
+	width: 50%;
+	height: 100%;
+	padding: 80px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 32px;
+}
+
+.login_title_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 480px;
+}
+
+.subtitle_link {
+	text-decoration: none;
+	color: #57647c;
+}
+.subtitle_link:hover {
+	text-decoration: underline;
+}
+
+.form_container {
+	width: 100%;
+	max-width: 480px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.boton_volver,
+.boton_volver > button {
+	width: 100%;
+}
+
+.form_button_container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 10px;
+}
+
+.boton_red_social {
+	position: relative;
+	text-transform: none;
+}
+
+.boton_red_social > span {
+	position: absolute;
+	left: 16px;
+}
+
+.boton_facebook {
+	border-color: #3b5998;
+	color: #3b5998;
+	transition: 0.3s all ease-in;
+}
+.boton_facebook:hover {
+	background-color: #3b5998;
+	border-color: #3b5998;
+	color: white;
+}
+
+.boton_google {
+	border-color: #ea4335;
+	color: #ea4335;
+}
+.boton_google:hover {
+	background-color: #ea4335;
+	border-color: #ea4335;
+	color: white;
+}
+
+@media (max-width: 900px) {
+	.login_banner {
+		display: none;
+	}
+
+	.form_wrapper {
+		width: 100%;
+	}
+}
