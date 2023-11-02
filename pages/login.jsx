@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button, TextField, Typography } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { HASH_ROUTES, PATH_ROUTES } from '../constants/routes/routes';
+import { EMAIL_COLEGIO } from '../constants/home/contactos';
 import SalaProfesores from './../assets/img/sala-profesores.jpg';
 import Logo from '../assets/img/logo.png';
 import classNames from 'classnames';
@@ -12,6 +13,20 @@ import classNames from 'classnames';
 import styles from '../styles/login.module.css';
 
 const Login = () => {
+	const [formData, setFormData] = useState({
+		email: '',
+		password: '',
+	});
+
+	const handleForgotPassword = () => {
+		const subject =
+			'Solicitud de restablecimiento de contraseña (Tec 3 - Sitio Web Oficial)';
+		const body = `Hola, he olvidado mi contraseña, necesito restablecerla, la cuenta utiliza el email: ${formData.email}`;
+
+		const mailtoLink = `mailto:${EMAIL_COLEGIO}?subject=${subject}&body=${body}`;
+		window.location.href = mailtoLink;
+	};
+
 	return (
 		<div className={styles.login_wrapper}>
 			<Image
@@ -35,10 +50,7 @@ const Login = () => {
 						align="center"
 					>
 						El inicio de sesión esta reservado unicamente para miembros del{' '}
-						<Link
-							href={PATH_ROUTES.HOME + HASH_ROUTES.EQUIPO}
-							className={styles.subtitle_link}
-						>
+						<Link href={HASH_ROUTES.EQUIPO} className={styles.subtitle_link}>
 							equipo directivo
 						</Link>
 					</Typography>
@@ -53,6 +65,13 @@ const Login = () => {
 						variant="outlined"
 						fullWidth
 						required
+						value={formData.email}
+						onChange={e =>
+							setFormData(prevState => ({
+								...prevState,
+								email: e.target.value,
+							}))
+						}
 					/>
 
 					<TextField
@@ -63,6 +82,21 @@ const Login = () => {
 						variant="outlined"
 						fullWidth
 						required
+						value={formData.password}
+						onChange={e =>
+							setFormData(prevState => ({
+								...prevState,
+								password: e.target.value,
+							}))
+						}
+						helperText={
+							<span
+								className={styles.forgot_password_text}
+								onClick={handleForgotPassword}
+							>
+								Olvidaste tu contraseña?
+							</span>
+						}
 					/>
 
 					<Button variant="contained" size="large" type="submit">
@@ -76,18 +110,6 @@ const Login = () => {
 					</Link>
 
 					<div className={styles.form_button_container}>
-						<Button
-							variant="outlined"
-							size="large"
-							startIcon={<FacebookIcon />}
-							className={classNames(
-								styles.boton_red_social,
-								styles.boton_facebook
-							)}
-						>
-							Conectar con Facebook
-						</Button>
-
 						<Button
 							variant="outlined"
 							size="large"

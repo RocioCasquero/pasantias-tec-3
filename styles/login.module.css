@@ -45,6 +45,21 @@
 	gap: 20px;
 }
 
+.forgot_password_text {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	text-align: end;
+	font-size: 14px;
+	margin-top: 2px;
+	color: #93c572;
+	cursor: pointer;
+}
+.forgot_password_text:hover {
+	text-decoration: underline;
+	color: #66894f;
+}
+
 .boton_volver,
 .boton_volver > button {
 	width: 100%;
