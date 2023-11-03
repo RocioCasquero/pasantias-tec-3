@@ -7,10 +7,11 @@ import Sidebar from '../Drawer';
 import HeaderMenuList from './HeaderMenuList';
 import { DISTANCE_TO_CHANGE } from '../../constants/header/headerRules';
 import { PATH_ROUTES } from '../../constants/routes/routes';
-import Logo from '../../assets/img/logo.png';
-import globalStyles from '../../styles/global.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
+import Logo from '../../assets/img/logo.png';
 import classNames from 'classnames';
+
+import globalStyles from '../../styles/global.module.css';
 import styles from './styles.module.css';
 
 const Header = () => {

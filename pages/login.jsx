@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSnackbar } from 'notistack';
 import { Button, TextField, Typography } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import { HASH_ROUTES, PATH_ROUTES } from '../constants/routes/routes';
 import { EMAIL_COLEGIO } from '../constants/home/contactos';
+import { UserAuth } from '../context/authContext';
 import SalaProfesores from './../assets/img/sala-profesores.jpg';
 import Logo from '../assets/img/logo.png';
 import classNames from 'classnames';
@@ -13,10 +14,29 @@ import classNames from 'classnames';
 import styles from '../styles/login.module.css';
 
 const Login = () => {
+	const { user, authLoading, googleSignIn } = UserAuth();
+	const { enqueueSnackbar } = useSnackbar();
+
+	console.log({ authLoading, user });
+
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
 	});
+
+	const handleGoogleSignIn = async () => {
+		await googleSignIn()
+			.then(() => {
+				enqueueSnackbar('¡Sesión iniciada! Bienvenido', {
+					variant: 'success',
+				});
+			})
+			.catch(() =>
+				enqueueSnackbar('Hubo un error al iniciar sesión, vuelva a intentar', {
+					variant: 'error',
+				})
+			);
+	};
 
 	const handleForgotPassword = () => {
 		const subject =
@@ -118,6 +138,7 @@ const Login = () => {
 								styles.boton_red_social,
 								styles.boton_google
 							)}
+							onClick={handleGoogleSignIn}
 						>
 							Conectar con Google
 						</Button>

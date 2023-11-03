@@ -10,6 +10,7 @@ import theme from '../constants/styles/theme';
 import { CUSTOM_ROUTES } from '../constants/routes/routes';
 import { LAYOUT_TYPES } from '../constants/layouts';
 import createEmotionCache from '../utils/createEmotionCache';
+import { AuthContextProvider } from '../context/authContext';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -22,7 +23,7 @@ const MyApp = ({
 }) => {
 	const { pathname } = router;
 
-	const GetLayout = () => {
+	const CustomLayout = () => {
 		const customRoute = CUSTOM_ROUTES.find(route => route?.path === pathname);
 
 		switch (customRoute?.layout) {
@@ -44,17 +45,19 @@ const MyApp = ({
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
 				<title>Técnica 3 - MDP</title>
 			</Head>
-			<ThemeProvider theme={theme}>
-				{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-				<CssBaseline />
-				<SnackbarProvider
-					maxSnack={3}
-					autoHideDuration={3000}
-					anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-				>
-					<GetLayout />
-				</SnackbarProvider>
-			</ThemeProvider>
+
+			<AuthContextProvider>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+					<SnackbarProvider
+						maxSnack={3}
+						autoHideDuration={3000}
+						anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+					>
+						<CustomLayout />
+					</SnackbarProvider>
+				</ThemeProvider>
+			</AuthContextProvider>
 		</CacheProvider>
 	);
 };
