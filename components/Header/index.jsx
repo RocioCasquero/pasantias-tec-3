@@ -33,7 +33,7 @@ const Header = () => {
 	const { route } = useRouter();
 	const { enqueueSnackbar } = useSnackbar();
 	const { user, authLoading, logOut } = UserAuth();
-	console.log(user);
+
 	const [scrollY, setScrollY] = useState(0);
 	const [hasScroll, setHasScroll] = useState(false);
 	const [showDrawer, setShowDrawer] = useState(false);

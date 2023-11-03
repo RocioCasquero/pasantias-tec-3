@@ -13,36 +13,39 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [authLoading, setAuthLoading] = useState(true);
-	const [authError, setAuthError] = useState(null);
 
 	const googleSignIn = async () => {
-		setAuthError(null);
 		setAuthLoading(true);
-
-		const provider = new GoogleAuthProvider();
-		await signInWithPopup(auth, provider).catch(() => setAuthError(error));
-
-		setAuthLoading(false);
+		try {
+			const provider = new GoogleAuthProvider();
+			await signInWithPopup(auth, provider);
+			setAuthLoading(false);
+		} catch (error) {
+			setAuthLoading(false);
+			throw error;
+		}
 	};
 
 	const emailSignIn = async (email, password) => {
-		setAuthError(null);
 		setAuthLoading(true);
-
-		await signInWithEmailAndPassword(auth, email, password).catch(() =>
-			setAuthError(error)
-		);
-
-		setAuthLoading(false);
+		try {
+			await signInWithEmailAndPassword(auth, email, password);
+			setAuthLoading(false);
+		} catch (error) {
+			setAuthLoading(false);
+			throw error;
+		}
 	};
 
 	const logOut = async () => {
-		setAuthError(null);
 		setAuthLoading(true);
-
-		await signOut(auth).catch(() => setAuthError(error));
-
-		setAuthLoading(false);
+		try {
+			await signOut(auth);
+			setAuthLoading(false);
+		} catch (error) {
+			setAuthLoading(false);
+			throw error;
+		}
 	};
 
 	useEffect(() => {
@@ -67,7 +70,6 @@ export const AuthContextProvider = ({ children }) => {
 			value={{
 				user,
 				authLoading,
-				authError,
 				emailSignIn,
 				googleSignIn,
 				logOut,

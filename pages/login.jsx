@@ -31,10 +31,15 @@ const Login = () => {
 		});
 	};
 
-	const signInError = () => {
-		enqueueSnackbar('Hubo un error al iniciar sesión, vuelva a intentar', {
-			variant: 'error',
-		});
+	const signInError = error => {
+		enqueueSnackbar(
+			error?.code === 'auth/invalid-login-credentials'
+				? 'Email o contraseña incorrectos'
+				: 'Hubo un error al iniciar sesión, vuelva a intentar',
+			{
+				variant: 'error',
+			}
+		);
 	};
 
 	const handleGoogleSignIn = async () => {
