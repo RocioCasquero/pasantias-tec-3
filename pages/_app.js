@@ -51,7 +51,7 @@ const MyApp = ({
 					<CssBaseline />
 					<SnackbarProvider
 						maxSnack={3}
-						autoHideDuration={3000}
+						autoHideDuration={4000}
 						anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 					>
 						<CustomLayout />

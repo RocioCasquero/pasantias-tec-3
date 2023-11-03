@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import { Button, TextField, Typography } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -14,29 +15,42 @@ import classNames from 'classnames';
 import styles from '../styles/login.module.css';
 
 const Login = () => {
-	const { user, authLoading, googleSignIn } = UserAuth();
+	const router = useRouter();
 	const { enqueueSnackbar } = useSnackbar();
-
-	console.log({ authLoading, user });
+	const { user, authLoading, googleSignIn, emailSignIn } = UserAuth();
 
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
 	});
 
-	const handleGoogleSignIn = async () => {
-		await googleSignIn()
-			.then(() => {
-				enqueueSnackbar('¡Sesión iniciada! Bienvenido', {
-					variant: 'success',
-				});
-			})
-			.catch(() =>
-				enqueueSnackbar('Hubo un error al iniciar sesión, vuelva a intentar', {
-					variant: 'error',
-				})
-			);
+	const signInSuccessfully = () => {
+		router.push(PATH_ROUTES.HOME);
+		enqueueSnackbar('¡Sesión iniciada! Bienvenido', {
+			variant: 'success',
+		});
 	};
+
+	const signInError = () => {
+		enqueueSnackbar('Hubo un error al iniciar sesión, vuelva a intentar', {
+			variant: 'error',
+		});
+	};
+
+	const handleGoogleSignIn = async () => {
+		await googleSignIn().then(signInSuccessfully).catch(signInError);
+	};
+
+	const handleEmailSignIn = async e => {
+		e.preventDefault();
+		await emailSignIn(formData.email, formData.password)
+			.then(signInSuccessfully)
+			.catch(signInError);
+	};
+
+	useEffect(() => {
+		user && router.push(PATH_ROUTES.HOME);
+	}, [user]);
 
 	const handleForgotPassword = () => {
 		const subject =
@@ -76,7 +90,10 @@ const Login = () => {
 					</Typography>
 				</div>
 
-				<form className={styles.form_container}>
+				<form
+					className={styles.form_container}
+					onSubmit={e => handleEmailSignIn(e)}
+				>
 					<TextField
 						id="login-email"
 						type="email"
@@ -119,11 +136,20 @@ const Login = () => {
 						}
 					/>
 
-					<Button variant="contained" size="large" type="submit">
-						Ingresar
+					<Button
+						variant="contained"
+						size="large"
+						type="submit"
+						disabled={authLoading}
+					>
+						{authLoading ? 'Cargando...' : 'Ingresar'}
 					</Button>
 
-					<Link href={PATH_ROUTES.HOME} className={styles.boton_volver}>
+					<Link
+						href={PATH_ROUTES.HOME}
+						className={styles.boton_volver}
+						disabled={authLoading}
+					>
 						<Button variant="outlined" size="large">
 							Volver
 						</Button>
@@ -139,6 +165,7 @@ const Login = () => {
 								styles.boton_google
 							)}
 							onClick={handleGoogleSignIn}
+							disabled={authLoading}
 						>
 							Conectar con Google
 						</Button>

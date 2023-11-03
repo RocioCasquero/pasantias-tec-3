@@ -12,49 +12,53 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
-	const [authLoading, setAuthLoading] = useState(false);
+	const [authLoading, setAuthLoading] = useState(true);
 	const [authError, setAuthError] = useState(null);
 
 	const googleSignIn = async () => {
 		setAuthError(null);
+		setAuthLoading(true);
 
-		try {
-			const provider = new GoogleAuthProvider();
-			await signInWithPopup(auth, provider);
-		} catch (error) {
-			setAuthError(error);
-		}
+		const provider = new GoogleAuthProvider();
+		await signInWithPopup(auth, provider).catch(() => setAuthError(error));
+
+		setAuthLoading(false);
 	};
 
 	const emailSignIn = async (email, password) => {
 		setAuthError(null);
+		setAuthLoading(true);
 
-		try {
-			await signInWithEmailAndPassword(auth, email, password);
-		} catch (error) {
-			setAuthError(error);
-		}
+		await signInWithEmailAndPassword(auth, email, password).catch(() =>
+			setAuthError(error)
+		);
+
+		setAuthLoading(false);
 	};
 
 	const logOut = async () => {
 		setAuthError(null);
+		setAuthLoading(true);
 
-		try {
-			await signOut(auth);
-		} catch (error) {
-			setAuthError(error);
-		}
+		await signOut(auth).catch(() => setAuthError(error));
+
+		setAuthLoading(false);
 	};
 
 	useEffect(() => {
+		setAuthLoading(true);
+
+		const authLoadingTimer = setTimeout(() => {
+			setAuthLoading(false);
+		}, 1000);
+
 		const unsubscribe = onAuthStateChanged(auth, currentUser => {
 			setUser(currentUser);
 		});
 
 		return () => {
-			setAuthLoading(true);
+			clearTimeout(authLoadingTimer);
 			unsubscribe();
-			setAuthLoading(false);
 		};
 	}, [user]);
 

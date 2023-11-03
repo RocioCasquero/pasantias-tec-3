@@ -30,8 +30,6 @@ const Sidebar = ({ showDrawer, setShowDrawer }) => {
 			return;
 		}
 
-		console.log(value);
-
 		setShowDrawer(value);
 	};
 

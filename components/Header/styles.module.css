@@ -61,3 +61,15 @@
 	opacity: 0.5;
 	cursor: not-allowed !important;
 }
+
+.spinner {
+	color: white;
+	width: 30px !important;
+	height: 30px !important;
+	margin-left: 6px;
+}
+
+.user_avatar {
+	width: 36px;
+	height: 36px;
+}
