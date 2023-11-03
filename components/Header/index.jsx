@@ -145,17 +145,10 @@ const Header = () => {
 									open={Boolean(anchorElUser)}
 									onClose={handleCloseUserMenu}
 									onClick={handleCloseUserMenu}
+									disableScrollLock
 								>
 									<MenuItem>
-										<Typography
-											textAlign="center"
-											onClick={() => router.push(PATH_ROUTES.DASHBOARD)}
-										>
-											Dashboard
-										</Typography>
-									</MenuItem>
-									<MenuItem>
-										<Typography textAlign="center" onClick={handleLogOut}>
+										<Typography onClick={handleLogOut}>
 											Cerrar sesión
 										</Typography>
 									</MenuItem>
