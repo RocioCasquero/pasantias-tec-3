@@ -11,6 +11,7 @@ import { CUSTOM_ROUTES } from '../constants/routes/routes';
 import { LAYOUT_TYPES } from '../constants/layouts';
 import createEmotionCache from '../utils/createEmotionCache';
 import { AuthContextProvider } from '../context/authContext';
+import PrivateRouteProvider from '../layouts/PrivateRouteProvider';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -23,9 +24,9 @@ const MyApp = ({
 }) => {
 	const { pathname } = router;
 
-	const CustomLayout = () => {
-		const customRoute = CUSTOM_ROUTES.find(route => route?.path === pathname);
+	const customRoute = CUSTOM_ROUTES.find(route => route?.path === pathname);
 
+	const CustomLayout = () => {
 		switch (customRoute?.layout) {
 			case LAYOUT_TYPES.EMPTY:
 				return <Component {...pageProps} />;
@@ -54,7 +55,9 @@ const MyApp = ({
 						autoHideDuration={4000}
 						anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 					>
-						<CustomLayout />
+						<PrivateRouteProvider isPrivate={customRoute?.private}>
+							<CustomLayout />
+						</PrivateRouteProvider>
 					</SnackbarProvider>
 				</ThemeProvider>
 			</AuthContextProvider>

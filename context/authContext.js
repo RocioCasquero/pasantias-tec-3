@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
 
 		const authLoadingTimer = setTimeout(() => {
 			setAuthLoading(false);
-		}, 1000);
+		}, 500);
 
 		const unsubscribe = onAuthStateChanged(auth, currentUser => {
 			setUser(currentUser);

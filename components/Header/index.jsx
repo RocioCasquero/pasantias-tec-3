@@ -30,7 +30,7 @@ import globalStyles from '../../styles/global.module.css';
 import styles from './styles.module.css';
 
 const Header = () => {
-	const { route } = useRouter();
+	const router = useRouter();
 	const { enqueueSnackbar } = useSnackbar();
 	const { user, authLoading, logOut } = UserAuth();
 
@@ -39,7 +39,7 @@ const Header = () => {
 	const [showDrawer, setShowDrawer] = useState(false);
 	const [anchorElUser, setAnchorElUser] = useState(null);
 
-	const isHomeRoute = route === PATH_ROUTES.HOME;
+	const isHomeRoute = router.route === PATH_ROUTES.HOME;
 
 	const stringAvatar = email => {
 		const [firstName] = email?.split('@') || '';
@@ -83,18 +83,18 @@ const Header = () => {
 
 	useEffect(() => {
 		// si el scroll supera el limite activamos "hasScroll"
-		if (scrollY > DISTANCE_TO_CHANGE || !isHomeRoute) {
+		if (scrollY > DISTANCE_TO_CHANGE) {
 			setHasScroll(true);
 		} else {
 			setHasScroll(false);
 		}
-	}, [scrollY, DISTANCE_TO_CHANGE, isHomeRoute]);
+	}, [scrollY, DISTANCE_TO_CHANGE]);
 
 	return (
 		<Box>
 			<AppBar
 				className={classNames(styles.header, {
-					[styles.header_has_scroll]: hasScroll,
+					[styles.header_has_scroll]: hasScroll || !isHomeRoute,
 				})}
 			>
 				<Toolbar
@@ -146,6 +146,14 @@ const Header = () => {
 									onClose={handleCloseUserMenu}
 									onClick={handleCloseUserMenu}
 								>
+									<MenuItem>
+										<Typography
+											textAlign="center"
+											onClick={() => router.push(PATH_ROUTES.DASHBOARD)}
+										>
+											Dashboard
+										</Typography>
+									</MenuItem>
 									<MenuItem>
 										<Typography textAlign="center" onClick={handleLogOut}>
 											Cerrar sesión

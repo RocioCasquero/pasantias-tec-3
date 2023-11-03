@@ -13,6 +13,7 @@ export const PATH_ROUTES = {
 		CONSTRUCCIONES: '/especialidades/construcciones',
 	},
 	LOGIN: '/login',
+	DASHBOARD: '/dashboard',
 };
 
 export const HASH_ROUTES = {
@@ -22,5 +23,6 @@ export const HASH_ROUTES = {
 };
 
 export const CUSTOM_ROUTES = [
-	{ path: PATH_ROUTES.LOGIN, layout: LAYOUT_TYPES.EMPTY },
+	{ path: PATH_ROUTES.LOGIN, layout: LAYOUT_TYPES.EMPTY, private: false },
+	{ path: PATH_ROUTES.DASHBOARD, layout: LAYOUT_TYPES.EMPTY, private: true },
 ];
